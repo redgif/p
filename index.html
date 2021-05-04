@@ -1,7 +1,83 @@
-<!DOCTYPE html>
 <html>
 
-<body style="background-color: black">
+<body style="background-color:lightblue;">
+
+<img id="one" width="0" height="0" style="visibility:hidden" src="one.png">
+
+<canvas id="myCanvas" onload = 'move()' onclick = "clickfunc()" width="800" height="400" style=" padding-left: 0;
+    padding-right: 0;
+	
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 100px;
+    display: block;border:3px solid white;">
+</canvas>
 
 </body>
-</html>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.font = "16px Arial";
+
+var canvasX = 0; 
+var canvasY = 0; 
+canvas.addEventListener("mousemove", function(e) { 
+    var cRect = canvas.getBoundingClientRect();              // Gets the CSS positions along with width/height
+    canvasX = Math.round(e.clientX - cRect.left);        // Subtract the 'left' of the canvas from the X/Y
+    canvasY = Math.round(e.clientY - cRect.top);         // positions to get make (0,0) the top left of the    
+});
+
+var myVar = setInterval(move, 33);
+
+var blockArray = [];
+
+var result = "";
+var resultsArray = [];
+var clicknum = 0;
+
+var outputString = ""; 
+function clickfunc(){
+start = 1; 
+//timer = timer + 1;
+}
+
+var scene = 0; 
+var start = 0; 
+var timer = 0; 
+
+var imgArray = []; 
+
+for (x = 5; x < 10; x++){
+for (z = 1; z < 10; z++){
+for (i = 0; i < 10; i++) {
+  imgArray.push("chun/2" +x.toString() + z.toString() + i.toString() + ".png"); 
+}
+}
+}
+
+console.log(imgArray);
+
+function move() {
+
+//BG
+ctx.fillStyle = "black";
+ctx.fillRect(0,0, 800, 800);
+
+ctx.drawImage(one,100, 0, 608, 400);
+
+if (start == 1){timer = timer + 1; if (timer > 430){timer = 0;}}
+
+document.getElementById("one").src = imgArray[timer];
+
+ctx.fillStyle = "white";
+ctx.font = "20px Arial";
+ctx.fillText(imgArray[timer], 10, 40);
+
+}//End of FUNCTION
+
+
+</script>
+
+</html> 
+
